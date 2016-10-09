@@ -38,9 +38,20 @@ namespace ULY{
         int sum = a + b;
         bool neg_over = a<0 && b<0 && 0<=sum;
         bool pos_over = 0<=a && 0<=b && sum<0;
-        return !neg_over&&!pos_over;
+        return !(neg_over||pos_over);
     }
-
+    bool tadd_ok2(int a,int b){
+        __asm {
+            mov eax,a
+            add eax,b
+            jo  overflowed
+            xor eax,eax
+            jmp no_overflowed
+        overflowed:
+            mov eax,1
+        no_overflowed:
+        }
+    }
     bool tmul_ok(int a,int b){
         int p = a*b;
         return !a || p/a == b;

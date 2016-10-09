@@ -1,18 +1,17 @@
 #pragma once
 
 #include <windows.h>
+#include "ULYTypeDef.h"
 #include <iostream>
 
 //取高位低位
-#define byte unsigned char
-#define word short
 #define WORD_HI(xxx) ((byte) ((word)(xxx)>>8))
 #define WORD_LO(xxx) ((byte) ((word)(xxx)&255))
 
 //返回array大小
 #define ARR_SIZE(a) (sizeof((a))/sizeof((a[0])))
 
-namespace Utility{
+namespace ULY{
 using namespace std;
 
 class Clock{
