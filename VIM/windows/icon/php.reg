@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\.php]
+@="phpfile"
+[HKEY_CLASSES_ROOT\phpfile]
+@="php"
+[HKEY_CLASSES_ROOT\phpfile\DefaultIcon]
+@="C:\\icon\\php.ico,0"
+[HKEY_CLASSES_ROOT\phpfile\shell]
+[HKEY_CLASSES_ROOT\phpfile\shell\open]
+[HKEY_CLASSES_ROOT\phpfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.php]
+@="phpfile"
+[HKEY_CURRENT_USER\Software\Classes\phpfile]
+@="php"
+[HKEY_CURRENT_USER\Software\Classes\phpfile\DefaultIcon]
+@="C:\\icon\\php.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"

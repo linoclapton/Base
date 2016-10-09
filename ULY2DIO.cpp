@@ -1,6 +1,6 @@
 #include "ULY2DIO.h"
 
-using namespace ULY;
+namespace ULY{
 
 void Pixel::readFile(string filename){
     int length = filename.size();
@@ -45,4 +45,6 @@ void Pixel::writeBMP(string filename){
     }
     fout.close();
     delete[] data;
+}
+
 }

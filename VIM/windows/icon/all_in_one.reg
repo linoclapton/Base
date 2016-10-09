@@ -1,0 +1,181 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\.php]
+@="phpfile"
+[HKEY_CLASSES_ROOT\phpfile]
+@="php"
+[HKEY_CLASSES_ROOT\phpfile\DefaultIcon]
+@="C:\\icon\\php.ico,0"
+[HKEY_CLASSES_ROOT\phpfile\shell]
+[HKEY_CLASSES_ROOT\phpfile\shell\open]
+[HKEY_CLASSES_ROOT\phpfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.php]
+@="phpfile"
+[HKEY_CURRENT_USER\Software\Classes\phpfile]
+@="php"
+[HKEY_CURRENT_USER\Software\Classes\phpfile\DefaultIcon]
+@="C:\\icon\\php.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\phpfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.c]
+@="cfile"
+[HKEY_CLASSES_ROOT\cfile]
+@="c"
+[HKEY_CLASSES_ROOT\cfile\DefaultIcon]
+@="C:\\icon\\c.ico,0"
+[HKEY_CLASSES_ROOT\cfile\shell]
+[HKEY_CLASSES_ROOT\cfile\shell\open]
+[HKEY_CLASSES_ROOT\cfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.c]
+@="cfile"
+[HKEY_CURRENT_USER\Software\Classes\cfile]
+@="c"
+[HKEY_CURRENT_USER\Software\Classes\cfile\DefaultIcon]
+@="C:\\icon\\c.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.cpp]
+@="cppfile"
+[HKEY_CLASSES_ROOT\cppfile]
+@="cpp"
+[HKEY_CLASSES_ROOT\cppfile\DefaultIcon]
+@="C:\\icon\\cpp.ico,0"
+[HKEY_CLASSES_ROOT\cppfile\shell]
+[HKEY_CLASSES_ROOT\cppfile\shell\open]
+[HKEY_CLASSES_ROOT\cppfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.cpp]
+@="cppfile"
+[HKEY_CURRENT_USER\Software\Classes\cppfile]
+@="cpp"
+[HKEY_CURRENT_USER\Software\Classes\cppfile\DefaultIcon]
+@="C:\\icon\\cpp.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\cppfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\cppfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\cppfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.java]
+@="javafile"
+[HKEY_CLASSES_ROOT\javafile]
+@="java"
+[HKEY_CLASSES_ROOT\javafile\DefaultIcon]
+@="C:\\icon\\java.ico,0"
+[HKEY_CLASSES_ROOT\javafile\shell]
+[HKEY_CLASSES_ROOT\javafile\shell\open]
+[HKEY_CLASSES_ROOT\javafile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.java]
+@="javafile"
+[HKEY_CURRENT_USER\Software\Classes\javafile]
+@="java"
+[HKEY_CURRENT_USER\Software\Classes\javafile\DefaultIcon]
+@="C:\\icon\\java.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\javafile\shell]
+[HKEY_CURRENT_USER\Software\Classes\javafile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\javafile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.html]
+@="htmlfile"
+[HKEY_CLASSES_ROOT\htmlfile]
+@="html"
+[HKEY_CLASSES_ROOT\htmlfile\DefaultIcon]
+@="C:\\icon\\html.ico,0"
+[HKEY_CLASSES_ROOT\htmlfile\shell]
+[HKEY_CLASSES_ROOT\htmlfile\shell\open]
+[HKEY_CLASSES_ROOT\htmlfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.html]
+@="htmlfile"
+[HKEY_CURRENT_USER\Software\Classes\htmlfile]
+@="html"
+[HKEY_CURRENT_USER\Software\Classes\htmlfile\DefaultIcon]
+@="C:\\icon\\html.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\htmlfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\htmlfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\htmlfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.py]
+@="pyfile"
+[HKEY_CLASSES_ROOT\pyfile]
+@="py"
+[HKEY_CLASSES_ROOT\pyfile\DefaultIcon]
+@="C:\\icon\\py.ico,0"
+[HKEY_CLASSES_ROOT\pyfile\shell]
+[HKEY_CLASSES_ROOT\pyfile\shell\open]
+[HKEY_CLASSES_ROOT\pyfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.py]
+@="pyfile"
+[HKEY_CURRENT_USER\Software\Classes\pyfile]
+@="py"
+[HKEY_CURRENT_USER\Software\Classes\pyfile\DefaultIcon]
+@="C:\\icon\\py.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\pyfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\pyfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\pyfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.h]
+@="hfile"
+[HKEY_CLASSES_ROOT\hfile]
+@="h"
+[HKEY_CLASSES_ROOT\hfile\DefaultIcon]
+@="C:\\icon\\h.ico,0"
+[HKEY_CLASSES_ROOT\hfile\shell]
+[HKEY_CLASSES_ROOT\hfile\shell\open]
+[HKEY_CLASSES_ROOT\hfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.h]
+@="hfile"
+[HKEY_CURRENT_USER\Software\Classes\hfile]
+@="h"
+[HKEY_CURRENT_USER\Software\Classes\hfile\DefaultIcon]
+@="C:\\icon\\h.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\hfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\hfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\hfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.js]
+@="jsfile"
+[HKEY_CLASSES_ROOT\jsfile]
+@="js"
+[HKEY_CLASSES_ROOT\jsfile\DefaultIcon]
+@="C:\\icon\\js.ico,0"
+[HKEY_CLASSES_ROOT\jsfile\shell]
+[HKEY_CLASSES_ROOT\jsfile\shell\open]
+[HKEY_CLASSES_ROOT\jsfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.js]
+@="jsfile"
+[HKEY_CURRENT_USER\Software\Classes\jsfile]
+@="js"
+[HKEY_CURRENT_USER\Software\Classes\jsfile\DefaultIcon]
+@="C:\\icon\\js.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\jsfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\jsfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\jsfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CLASSES_ROOT\.css]
+@="cssfile"
+[HKEY_CLASSES_ROOT\cssfile]
+@="css"
+[HKEY_CLASSES_ROOT\cssfile\DefaultIcon]
+@="C:\\icon\\css.ico,0"
+[HKEY_CLASSES_ROOT\cssfile\shell]
+[HKEY_CLASSES_ROOT\cssfile\shell\open]
+[HKEY_CLASSES_ROOT\cssfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.css]
+@="cssfile"
+[HKEY_CURRENT_USER\Software\Classes\cssfile]
+@="css"
+[HKEY_CURRENT_USER\Software\Classes\cssfile\DefaultIcon]
+@="C:\\icon\\css.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\cssfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\cssfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\cssfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"

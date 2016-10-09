@@ -1,0 +1,2 @@
+usr/share/vim/vim74/colors
+etc/vim/vimrc

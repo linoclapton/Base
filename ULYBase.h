@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include "ULYTypeDef.h"
+#include "ULY2DIO.h"
 #include <iostream>
 
 //取高位低位
@@ -44,4 +45,7 @@ public:
         index--;
     }
 };
+
+void drawPixelOnDesktop(Pixel &p);
+
 }

@@ -1,0 +1,236 @@
+set nu!
+set t_Co=256
+colorscheme molokai 
+syntax enable
+syntax on
+set nocompatible
+set backupdir=C:/software/Vim/backup
+set ignorecase
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+nnoremap <leader>ev :tabnew $VIMRC<cr>
+nnoremap <leader>sv :source $VIMRC<cr>
+set diffexpr=MyDiff()
+function! MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
+"set nobackup
+"set nowritebackup
+set tags=tags
+set autochdir
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1 "put Tlist right default left
+let g:winManagerWindowLayout='FileExplorer|TagList' 
+nmap wm :WMToggle<cr>
+set guifont=Consolas:h14
+
+"Toggle Menu and Toolbar
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
+winpos 165 35
+set lines=30 columns=120 
+set cursorline
+" Highlight whitespace problems.
+" flags is '' to clear highlighting, or is a string to
+" specify what to highlight (one or more characters):
+"   e  whitespace at end of line
+"   i  spaces used for indenting
+"   s  spaces before a tab
+"   t  tabs not at start of line
+function! ShowWhitespace(flags)
+  let bad = ''
+  let pat = []
+  for c in split(a:flags, '\zs')
+    if c == 'e'
+      call add(pat, '\s\+$')
+    elseif c == 'i'
+      call add(pat, '^\t*\zs \+')
+    elseif c == 's'
+      call add(pat, ' \+\ze\t')
+    elseif c == 't'
+      call add(pat, '[^\t]\zs\t\+')
+    else
+      let bad .= c
+    endif
+  endfor
+  if len(pat) > 0
+    let s = join(pat, '\|')
+    exec 'syntax match ExtraWhitespace "'.s.'" containedin=ALL'
+  else
+    syntax clear ExtraWhitespace
+  endif
+  if len(bad) > 0
+    echo 'ShowWhitespace ignored: '.bad
+  endif
+endfunction
+
+function! ToggleShowWhitespace()
+  if !exists('b:ws_show')
+    let b:ws_show = 0
+  endif
+  if !exists('b:ws_flags')
+    let b:ws_flags = 'iest'  " default (which whitespace to show)
+  endif
+  let b:ws_show = !b:ws_show
+  if b:ws_show
+    call ShowWhitespace(b:ws_flags)
+  else
+    call ShowWhitespace('')
+  endif
+endfunction
+
+function! FileType()
+    let l:filename = tolower(expand("%:t"))
+    let l:index = strridx(filename,".")+1
+    let l:type = strpart(filename,index)
+    return type
+endfunction
+
+function! NewFile()
+    let l:type = FileType()
+    if l:type == 'c' || l:type == 'cpp' || l:type == 'java' || l:type=='h' || l:type=='js' || l:type=='css'
+	call append(0,"/***************************************/")
+	call append(1,"/*       @author   : Li Yan            */")
+	call append(2,"/*       @version  : 1                 */")
+	call append(3,"/*       @created  : ".strftime("%Y-%m-%d %H:%M")."  */")
+	call append(4,"/*       @modified : ".strftime("%Y-%m-%d %H:%M")."  */")
+	call append(5,"/***************************************/")
+    elseif l:type == 'php'
+	call append(0,"<?php/***************************************/")
+	call append(1,"     /*       @author   : Li Yan            */")
+	call append(2,"     /*       @version  : 1                 */")
+	call append(3,"     /*       @created  : ".strftime("%Y-%m-%d %H:%M")."  */")
+	call append(4,"     /*       @modified : ".strftime("%Y-%m-%d %H:%M")."  */")
+	call append(5,"     /***************************************/?>")
+    elseif l:type == 'html'|| l:type=='md'
+	call append(0,"<!--***************************************")
+	call append(1,"    *       @author   : Li Yan            *")
+	call append(2,"    *       @version  : 1                 *")
+	call append(3,"    *       @created  : ".strftime("%Y-%m-%d %H:%M")."  *")
+	call append(4,"    *       @modified : ".strftime("%Y-%m-%d %H:%M")."  *")
+	call append(5,"    ***************************************-->")
+    elseif l:type == 'py'
+	call append(0,"#######################################")
+	call append(1,"#       @author   : Li Yan            #")
+	call append(2,"#       @version  : 1                 #")
+	call append(3,"#       @created  : ".strftime("%Y-%m-%d %H:%M")."  #")
+	call append(4,"#       @modified : ".strftime("%Y-%m-%d %H:%M")."  #")
+	call append(5,"#######################################")
+    elseif l:type == 'tex'
+	call append(0,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+	call append(1,"%       @author   : Li Yan            %")
+	call append(2,"%       @version  : 1                 %")
+	call append(3,"%       @created  : ".strftime("%Y-%m-%d %H:%M")."  %")
+	call append(4,"%       @modified : ".strftime("%Y-%m-%d %H:%M")."  %")
+	call append(5,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    else
+    endif
+endfunction
+function! OpenPHP()
+    let l:path = substitute(substitute(expand('%:p'),"\\","/","g"),".*www","","")
+    exec '!start chrome 127.0.0.1'.l:path
+endfunction
+function! SetMakeprg(type)
+    if a:type == 'c'
+        setlocal makeprg=gcc\ %\ -o\ %:r
+    elseif a:type == 'opengl'
+        setlocal makeprg=C:\\SDK\\MinGW\\bin\\gcc\ %\ -o\ %:r\ -D_STDCALL_SUPPORTED\ -D_M_IX86\ -lopengl32\ -lglut32\ -lglew32\ -lstdc++
+    endif
+endfunction
+function! OpenMD()
+    let l:path = substitute(expand('%:p'),"\\.md",".html","")
+    exec 'sil !start chrome '.l:path
+endfunction
+"nnoremap  a<esc>l
+function! MakeMap()
+    let l:type = FileType()
+    if l:type == 'c'
+	    nnoremap <buffer> <leader>m :w<cr>:call SetMakeprg('c')<cr>:make<cr>:cw<cr>:!%:r<cr>
+        nnoremap <buffer> <leader>o :w<cr>:call SetMakeprg('opengl')<cr>:make<cr>:cw<cr>:!%:r<cr>
+	    inoremap <buffer> { {}<esc>O
+    elseif l:type == 'java'
+        setlocal makeprg=javac\ %
+	    nnoremap <buffer> <leader>m :w<cr>:make<cr>:cw<cr>:!java %:r<cr>
+	    inoremap <buffer> { {}<esc>O
+    elseif l:type == 'cpp'
+        setlocal makeprg=g++\ %\ -o\ %:r
+	    nnoremap <buffer> <leader>m :w<cr>:make<cr>:cw<cr>:!%:r<cr>
+        nnoremap <buffer> <leader>o :w<cr>:call SetMakeprg('opengl')<cr>:make<cr>:cw<cr>:!%:r<cr>
+	    inoremap <buffer> { {}<esc>O
+    elseif l:type == 'html'
+        iabbrev  <buffer> &l &lt;
+        iabbrev  <buffer> &r &gt;
+        nnoremap <buffer> <leader>m :w<cr>:!start chrome %:p<cr>
+    elseif l:type == 'py'
+        nnoremap <buffer> <leader>m :w<cr>:!python %<cr> 
+    elseif l:type == 'php'
+        iabbrev  <buffer> &l &lt;
+        iabbrev  <buffer> &r &gt;
+        nnoremap <buffer> <leader>m :w<cr>:call OpenPHP()<cr>
+    elseif l:type == 'js'
+        nnoremap <buffer> <leader>m :w<cr>:!node %<cr>
+    elseif l:type == 'tex'
+        nnoremap <buffer> <leader>m :w<cr>:!xelatex %<cr>:!%:t:r.pdf
+        ":w<cr>:!latex %:t:r.tex<cr>:!dvips %:t:r.dvi<cr>:!ps2pdf %:t:r.ps<cr>:!%:t:r.pdf
+    elseif l:type == 'md'
+        "nnoremap <buffer> <leader>m :w<cr>:sil !pandoc % -s -o %:t:r.html --highlight-style Monokai -c \%MYNOTE\%/css/style.css --mathjax=\%MYNOTE\%/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML<cr>:call OpenMD()<cr>
+        nnoremap <buffer> <leader>m :w<cr>:sil !pandoc % --from markdown+grid_tables+pipe_tables -s -o %:t:r.html --highlight-style zenburn -c \%MYNOTE\%/css/style.css --mathjax=\%MYNOTE\%/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML<cr>:call OpenMD()<cr>
+    else
+    endif
+endfunction
+
+set encoding=utf-8
+set fileencoding=utf-8
+language messages zh_CN.utf-8
+nnoremap ws :call ToggleShowWhitespace()<CR>
+highlight ExtraWhitespace ctermbg=darkgreen guibg=#3A3A3A
+set guicursor=n-c-v:block-blinkon0,i-ci:ver25-blinkon0
+set mouse=""
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set ruler
+set wrap
+
+autocmd BufNewFile * :call NewFile()
+autocmd BufReadPost,BufNewFile * :call MakeMap()
+autocmd BufWrite   *.c,*.cpp,*.java,*.py,*.html,*.js,*.h,*.css,*.php,*.md :normal :%g/@modified/s/\d\d\d\d-\d\d-\d\d \d\d:\d\d/\=strftime("%Y-%m-%d %H:%M")/``:%g;@version;s;\zs\d[0-9 ]\{7,7}\ze;\=printf("%-8d",submatch(0)+1);``:noh
+set makeprg=gcc\ %:p\ -o\ %:p:r
+
+"let g:miniBufExplMapCTabSwitchBufs=1
+"let g:miniBufExplMapWindowNavVim=1
+"let g:miniBufExplMapWindowNavArrows=1
+"autocmd BufNewFile *.c :normal i/***************************************//*       @author   : Li Yan            *//*       @version  : 1                 *//*       @created  : =strftime("%Y-%m-%d %H:%M")  *//*       @modified : =strftime("%Y-%m-%d %H:%M")  *//***************************************/ "not call function version
+"nnoremap <leader>n :w<cr>:make<cr>:cw<cr>:!<c-r>=expand("%:p:r")<cr><cr>
+"nnoremap <leader>m :w<cr>:!gcc -o <c-r>=expand("%:p:r")<cr> <c-r>=expand("%:p")<cr> <cr>:!<c-r>=expand("%:p:r")<cr><cr>

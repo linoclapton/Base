@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\.c]
+@="cfile"
+[HKEY_CLASSES_ROOT\cfile]
+@="c"
+[HKEY_CLASSES_ROOT\cfile\DefaultIcon]
+@="C:\\icon\\c.ico,0"
+[HKEY_CLASSES_ROOT\cfile\shell]
+[HKEY_CLASSES_ROOT\cfile\shell\open]
+[HKEY_CLASSES_ROOT\cfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
+[HKEY_CURRENT_USER\Software\Classes\.c]
+@="cfile"
+[HKEY_CURRENT_USER\Software\Classes\cfile]
+@="c"
+[HKEY_CURRENT_USER\Software\Classes\cfile\DefaultIcon]
+@="C:\\icon\\c.ico,0"
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell]
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell\open]
+[HKEY_CURRENT_USER\Software\Classes\cfile\shell\open\command]
+@="D:\\Vim\\vim74\\gvim %1"
