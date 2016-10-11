@@ -45,7 +45,7 @@ public:
         index--;
     }
 };
-
+//draw picture on destop directly
 void drawPixelOnDesktop(Pixel &p);
 
 }

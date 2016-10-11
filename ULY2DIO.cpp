@@ -34,6 +34,7 @@ void Pixel::readBMP(string filename){
 
 void Pixel::writeBMP(string filename){
     ofstream fout(filename,ios::binary);
+    info.height = height/2;
     fout.write((char*)&header,sizeof(BMP_HEADER));
     fout.write((char*)&info,sizeof(BMP_INFO));
     int padding = ((info.bitsOfPixel*info.width+31)/32)*4;

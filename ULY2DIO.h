@@ -53,6 +53,5 @@ public:
     void writeBMP(string filename);
 };
 
-
 }
 
