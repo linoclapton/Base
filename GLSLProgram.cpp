@@ -240,6 +240,10 @@ void GLSLProgram::setUniform(const char *name, float x, float y, float z){
     GLint uniform_location = getUniformLocation(name);
     setUniform(uniform_location, x, y, z);
 }
+void GLSLProgram::setUniform(const char *name, float x, float y, float z,float w){
+    GLint uniform_location = getUniformLocation(name);
+    setUniform(uniform_location, x, y, z, w);
+}
 void GLSLProgram::setUniform(const char *name, const glm::vec3 & v){
     GLint uniform_location = getUniformLocation(name);
     setUniform(uniform_location, v);
@@ -282,6 +286,9 @@ void GLSLProgram::setUniformArray(const char * name,int size,float* data){
 }
 void GLSLProgram::setUniform(GLint uniform_location, float x, float y, float z){
     glUniform3f(uniform_location, x, y, z);
+}
+void GLSLProgram::setUniform(GLint uniform_location, float x,float y,float z,float w){
+    glUniform4f(uniform_location, x, y, z, w);
 }
 void GLSLProgram::setUniform(GLint uniform_location, const glm::vec3 & v){
     setUniform(uniform_location, v.x, v.y, v.z);

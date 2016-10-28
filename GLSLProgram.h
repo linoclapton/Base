@@ -60,6 +60,7 @@ public:
 
     //SetUniform
     void setUniform(const char *name, float x, float y,float z);
+    void setUniform(const char *name, float x, float y,float z,float w);
     void setUniform(const char *name, const glm::vec3 & v);
     void setUniform(const char *name, const glm::vec4 & v);
     void setUniform(const char *name, const glm::mat4 & m);
@@ -74,6 +75,7 @@ public:
     GLuint setUniform(const char *name, GLuint buffer_size, GLvoid *pointer, GLenum draw_type);
 
     void setUniform(GLint uniform_location, float x, float y, float z);
+    void setUniform(GLint uniform_location, float x, float y, float z, float w);
     void setUniform(GLint uniform_location, const glm::vec3 & v);
     void setUniform(GLint uniform_location, const glm::vec4 & v);
     void setUniform(GLint uniform_location, const glm::mat4 & m);
