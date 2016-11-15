@@ -1,7 +1,7 @@
 #pragma once
 
 #include <windows.h>
-#include "ULYTypeDef.h"
+#include "ULYType.h"
 #include "ULY2DIO.h"
 #include <iostream>
 

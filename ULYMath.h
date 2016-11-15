@@ -1,7 +1,8 @@
 #pragma once
-#include "ULYTypeDef.h"
+#include "ULYType.h"
 
 namespace ULY{
+
     //return 1/sqrt(x) 比标准库快4倍
     float invSqrt(float x){
         float xhalf = 0.5f*x;

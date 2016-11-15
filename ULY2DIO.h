@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <string>
 #include <fstream>
-#include "ULYTypeDef.h"
+#include "ULYType.h"
 
 namespace ULY{
 

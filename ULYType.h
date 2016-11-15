@@ -7,4 +7,5 @@ namespace ULY{
     typedef vec4* mat4;
     enum Color_Type{RGB,RGBA};
 
+
 }
