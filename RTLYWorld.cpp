@@ -5,6 +5,7 @@
 #include "RTLYLight.h"
 #include "RTLYMaterial.h"
 #include "RTLYMath.h"
+#include "RTLYGeoTriangles.h"
 
 using namespace RTLY;
 
@@ -24,8 +25,7 @@ World::World(){
 
 }
 void World::build(){
-    int num_samples = 256;   		// for Figure 18.4(a)
-    //	int num_samples = 100;   	// for Figure 18.4(b) & (c)
+    int num_samples = 16;   		
 
     Sampler* sampler_ptr = new MultiJitteredSampler(num_samples);
     vp.maxDepth = 0;
@@ -34,16 +34,16 @@ void World::build(){
     vp.sampleCount = num_samples;
     vp.sampler = sampler_ptr;	
 
-    background = RGBColor(0.5);
+    background = RGBColor(0.0);
     imageWidth = vp.hres;
     imageHeight = vp.vres;
     imageBuffer = new RGBColor[imageHeight*imageWidth];
 
-    tracer = new AreaLighting(this);
+    tracer = new RayCast(this);
 
     PinHole* camera = new PinHole;
-    camera->setEye(25, 200, 100);
-    camera->setLookAt(-0.5, 0, 0); 	
+    camera->setEye(100,0,100);
+    camera->setLookAt(0.0, 1.0 , 0); 	
     camera->setDistance(8000);          
     camera->computeUVW();     
     this->camera = camera; 
@@ -56,48 +56,25 @@ void World::build(){
 
 
     PointLight* light_ptr1 = new PointLight;
-    light_ptr1->setLocation(1, 5, 0);
+    light_ptr1->setLocation(50, 50, 1);
     light_ptr1->scaleRadiance(3.0);
     light_ptr1->setShadow(true);
     addLight(light_ptr1);
 
 
-    // yellow triangle
+    Phong* phong_ptr = new Phong;			
+    phong_ptr->setCd(0.75);  
+    phong_ptr->setKa(0.25); 
+    phong_ptr->setKd(0.8);
+    phong_ptr->setKs(0.15); 
+    phong_ptr->setExp(50.0);  
 
-    Matte* matte_ptr1 = new Matte;			
-    matte_ptr1->setKa(0.25); 
-    matte_ptr1->setKd(0.75);
-    matte_ptr1->setCd(1, 1, 0);
-
-    Triangle* triangle_ptr1 = new Triangle(Point3D(2, 0.5, 5), Point3D(2, 1.5, -5), Point3D(-1, 0, -4)); 
-    triangle_ptr1->set_material(matte_ptr1);
-    add_object(triangle_ptr1);
-
-
-    // dark green triangle (transformed)
-
-    Matte* matte_ptr2 = new Matte;			
-    matte_ptr2->setKa(0.25); 
-    matte_ptr2->setKd(0.75);
-    matte_ptr2->setCd(0.0, 0.5, 0.41);
-
-    Instance* triangle_ptr2 = new Instance(new Triangle(Point3D(2, 1, 5), Point3D(2, 0.5, -5), Point3D(-1, -1, -4))); 
-    triangle_ptr2->rotate_y(120);
-    triangle_ptr2->set_material(matte_ptr2);
-    add_object(triangle_ptr2);
-
-
-    // brown triangle (transformed)
-
-    Matte* matte_ptr3 = new Matte;			
-    matte_ptr3->setKa(0.25); 
-    matte_ptr3->setKd(0.75);
-    matte_ptr3->setCd(0.71, 0.40, 0.16);
-
-    Instance* triangle_ptr3 = new Instance(new Triangle(Point3D(2, 0, 5), Point3D(2, 1, -5), Point3D(-1, 0, -4))); 
-    triangle_ptr3->rotate_y(240);
-    triangle_ptr3->set_material(matte_ptr3);
-    add_object(triangle_ptr3);
+    Instance* ellipsoid_ptr = new Instance(new Sphere);
+    ellipsoid_ptr->setMaterial(phong_ptr);
+    ellipsoid_ptr->scale(2, 3, 1);
+    ellipsoid_ptr->rotateX(45);
+    ellipsoid_ptr->translate(0, 1, 0);
+    addObject(ellipsoid_ptr);
 
 }
 

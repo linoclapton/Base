@@ -1,5 +1,7 @@
 #pragma once
 #include "ULYType.h"
+#include <ctime>
+#include <cstdlib>
 
 namespace ULY{
 
@@ -25,5 +27,47 @@ namespace ULY{
         m[2][0] = ac*(1-c)-vec[1]*s;m[2][1] = bc*(1-c)+vec[0]*s;m[2][2]=c2+(1-c2)*c;m[2][3]=0.0f;
         m[3][0] = 0.0f; m[3][1] = 0.0f; m[3][2] = 0.0f; m[3][3] = 1.0f;
         return m;
+    }
+
+    template<typename T>
+    T power(T t,int n){
+        if(n>0){
+            T tmp = power(t,n>>1);
+            return n%2==1?t*tmp*tmp:tmp*tmp;
+        }else{
+            return 1.0;
+        }
+    }
+    //n 比下面的慢两倍
+    /*int power(int p,unsigned n){
+        if(n<0||(p==0&&n==0)) return 0;
+        if(n==0) return 1;
+        int result = 1;
+        int i = 0;
+        while(i<32)
+            result = ((n<<(i++))&0x80000000)<0?result*result*p:result*result;
+        
+        return result;
+    }*/
+    unsigned long power(unsigned long m, unsigned long n)
+    {
+        unsigned long  temp = 1;
+
+        while (n > 0) {         
+            if (n & 0x01UL == 1)
+                temp *= m;     
+            m *= m;             
+            n >>= 1;            
+        }
+        return temp;
+    }
+
+    float random(bool reset=false){
+        static bool first = true;
+        if(first||reset){
+            srand (time(NULL)); 
+            first = false;
+        }
+        return rand();
     }
 }

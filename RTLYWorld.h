@@ -42,9 +42,9 @@ namespace RTLY{
         ShadeRec hitObjects(const Ray& ray);
         void setPixel(int r,int c,RGBColor L);
         RGBColor maxToOne(const RGBColor& c)const{
-            float max = std::max(c.r,std::max(c.g,c.b));
-            if(max>1.0)
-                return c/max;
+            float m = max(c.r,max(c.g,c.b));
+            if(m>1.0)
+                return c/m;
             else
                 return c;
         }

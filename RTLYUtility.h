@@ -13,18 +13,6 @@ namespace RTLY{
     typedef Vector3D Normal;
     typedef Vector2D Point2D;
 
-    class Matrix {
-    public:
-        double	m[4][4];
-        Matrix(double diagonal=1.0);
-        Matrix(const Matrix& mat);
-        ~Matrix (void);
-        Matrix& operator= (const Matrix& rhs); 	
-        Matrix  operator* (const Matrix& mat) const;
-        Matrix  operator* (const double d) const;
-        void setIdentity(void);	
-        //friend Vector3D operator*(const Matrix& mat,const Vector3D& v);
-    };
 
     class Vector3D{
     public:
@@ -120,6 +108,23 @@ namespace RTLY{
         }
     };
    
+    class Matrix {
+    public:
+        double	m[4][4];
+        Matrix(double diagonal=1.0);
+        Matrix(const Matrix& mat);
+        ~Matrix (void);
+        Matrix& operator= (const Matrix& rhs); 	
+        Matrix  operator* (const Matrix& mat) const;
+        Matrix  operator* (const double d) const;
+        Matrix  operator/ (const double d);
+        void setIdentity(void);	
+        friend Vector3D operator*(const Matrix& mat,const Vector3D& v){
+            return Vector3D(mat.m[0][0] * v.x + mat.m[0][1] * v.y + mat.m[0][2] * v.z,
+                mat.m[1][0] * v.x + mat.m[1][1] * v.y + mat.m[1][2] * v.z,
+                mat.m[2][0] * v.x + mat.m[2][1] * v.y + mat.m[2][2] * v.z);
+        }
+    };
 
     class Ray{
     public:

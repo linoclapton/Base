@@ -8,6 +8,14 @@ int rand_int(int l,int h);
 float rand_float();
 float rand_float(int l, float h);
 
+inline double max(double x0, double x1) {
+        return ((x0 > x1) ? x0 : x1);
+}
+
+inline double min(double x0, double x1) {
+        return ((x0 < x1) ? x0 : x1);
+}
+
 inline void set_rand_seed(const int seed) {
         srand(seed);
 }
