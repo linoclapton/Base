@@ -15,9 +15,9 @@ Return
 ^k::
     sendinput, inside the crtl{+}j hotkey
 return
-Numpad0::
-run, Notepad
-return
+;Numpad0::
+;run, Notepad
+;return
 #IfWinActive ahk_class AcrobatSDIWindow
 !j::
 send,{Down}

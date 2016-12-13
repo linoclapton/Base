@@ -104,7 +104,8 @@ public:
     void useProgram(GLuint id);
     void renderText(std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 
-    const char* getGLErrorInfo(int errorId);
+    const char* getErrorInfo(int errorId);
+    void getInfo(GLenum infoType);
 
     void deleteShaders();
     void deleteProgram();
@@ -114,7 +115,7 @@ public:
     void printActiveUniforms();
     void printActiveAttirbs();
     void printLog();
-    void printError();
+    void printError(std::string s=" ");
 
 
     void checkFrameBufferStatus();

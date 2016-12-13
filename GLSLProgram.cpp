@@ -153,21 +153,21 @@ void GLSLProgram::use(int id){
 
 char*GLSLProgram::glEnumToString(GLenum type){
     switch(type){
-    case 0x8B50:return "GL_FLOAT_VEC2";
-    case 0x8B51:return "GL_FLOAT_VEC3";
-    case 0x8B52:return "GL_FLOAT_VEC4";
-    case 0x1406:return "GL_FLOAT";
-    case 0x1404:return "GL_INT";
-    case 0x8B5A:return "GL_FLOAT_MAT2";
-    case 0x8B5B:return "GL_FLOAT_MAT3";
-    case 0x8B5C:return "GL_FLOAT_MAT4";
-    case 0x8B5D:return "GL_SAMPLER_1D";
-    case 0x8B5E:return "GL_SAMPLER_2D";
-    case 0x8B5F:return "GL_SAMPLER_3D";
-    case 0x8B60:return "GL_SAMPLER_CUBE";
-    case 0x8B61:return "GL_SAMPLER_1D_SHADOW";
-    case 0x8B62:return "GL_SAMPLER_2D_SHADOW";
-    default: return "others";
+    case GL_FLOAT_VEC2:              return "GL_FLOAT_VEC2";
+    case GL_FLOAT_VEC3:              return "GL_FLOAT_VEC3";
+    case GL_FLOAT_VEC4:				 return "GL_FLOAT_VEC4";
+    case GL_FLOAT:                   return "GL_FLOAT";
+    case GL_INT:                     return "GL_INT";
+    case GL_FLOAT_MAT2:              return "GL_FLOAT_MAT2";
+    case GL_FLOAT_MAT3:              return "GL_FLOAT_MAT3";
+    case GL_FLOAT_MAT4:				 return "GL_FLOAT_MAT4";
+    case GL_SAMPLER_1D:				 return "GL_SAMPLER_1D";
+    case GL_SAMPLER_2D:				 return "GL_SAMPLER_2D";
+    case GL_SAMPLER_3D:				 return "GL_SAMPLER_3D";
+    case GL_SAMPLER_CUBE:            return "GL_SAMPLER_CUBE";
+    case GL_SAMPLER_1D_SHADOW:       return "GL_SAMPLER_1D_SHADOW";
+    case GL_SAMPLER_2D_SHADOW:		 return "GL_SAMPLER_2D_SHADOW";
+    default:                         return "UN_KNOWN_ENUM";
     }
 }
 void GLSLProgram::printActiveAttirbs(){
@@ -494,8 +494,8 @@ void GLSLProgram::getConstant(GLenum type,GLint* data){
     glGetIntegerv(type,data);
 }
 
-const char* GLSLProgram::getGLErrorInfo(int errorId){
-        const char* getGLErrorInfo(int errorId);
+const char* GLSLProgram::getErrorInfo(int errorId){
+        const char* getErrorInfo(int errorId);
         switch (errorId)
         {
             case GL_INVALID_ENUM:
@@ -546,7 +546,9 @@ void GLSLProgram::checkFrameBufferStatus(){
         }
     }
 }
-void GLSLProgram::printError(){
+void GLSLProgram::printError(std::string text){
+    if(text!="")
+        std::cout<<text<<":";
     GLenum error = glGetError();
     switch(error){
     case GL_NO_ERROR:
@@ -567,6 +569,28 @@ void GLSLProgram::printError(){
         printf("Stack overflow: An attempt has been made to perform an operation that would cause an internal stack to overflow\n");break;
     }
 }
+void GLSLProgram::getInfo(GLenum infoType){
+    int index[4]; 
+    switch(infoType){
+    case GL_ACTIVE_TEXTURE: glGetIntegerv(GL_ACTIVE_TEXTURE,index); 
+                            std::cout<<"GL_ACTIVE_TEXTURE:"<<"GL_TEXTURE"<<(index[0]-GL_TEXTURE0)<<std::endl;
+                            break;
+    case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS: //GL_TEXTURE0 to GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS-1
+                            glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS,index); 
+                            std::cout<<"GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:"<<index[0]<<std::endl;
+                            break;
+    case GL_MAX_VERTEX_ATTRIBS:
+                            glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,index); 
+                            std::cout<<"GL_MAX_VERTEX_ATTRIBS:"<<index[0]<<std::endl;
+                            break;
+    case GL_MAX_DRAW_BUFFERS:
+                            glGetIntegerv(GL_MAX_DRAW_BUFFERS,index);
+                            std::cout<<"GL_MAX_DRAW_BUFFERS:"<<index[0]<<std::endl;
+                            break;
+    default: break;
+    }
+}
+
 void Camera::normalize(float* v){
     float vl = sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
     v[0] /= vl;
