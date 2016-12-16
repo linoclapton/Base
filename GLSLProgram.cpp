@@ -571,6 +571,7 @@ void GLSLProgram::printError(std::string text){
 }
 void GLSLProgram::getInfo(GLenum infoType){
     int index[4]; 
+    float values[4];
     switch(infoType){
     case GL_ACTIVE_TEXTURE: glGetIntegerv(GL_ACTIVE_TEXTURE,index); 
                             std::cout<<"GL_ACTIVE_TEXTURE:"<<"GL_TEXTURE"<<(index[0]-GL_TEXTURE0)<<std::endl;
@@ -586,6 +587,21 @@ void GLSLProgram::getInfo(GLenum infoType){
     case GL_MAX_DRAW_BUFFERS:
                             glGetIntegerv(GL_MAX_DRAW_BUFFERS,index);
                             std::cout<<"GL_MAX_DRAW_BUFFERS:"<<index[0]<<std::endl;
+                            break;
+    case GL_DEPTH_CLEAR_VALUE:
+                            glGetFloatv(GL_DEPTH_CLEAR_VALUE, values);
+                            std::cout<<"GL_DEPTH_CLEAR_VALUE:"<<values[0]<<std::endl;
+                            break;
+    case GL_COLOR_CLEAR_VALUE:
+                            glGetFloatv( GL_COLOR_CLEAR_VALUE,values);
+                            std::cout<<"GL_COLOR_CLEAR_VALUE:";
+                            for(int i=0;i<4;i++)
+                                std::cout<<values[i]<<' ';
+                            std::cout<<std::endl;
+                            break;
+    case GL_STENCIL_CLEAR_VALUE:
+                            glGetIntegerv(GL_STENCIL_CLEAR_VALUE,index);
+                            std::cout<<"GL_STENCIL_CLEAR_VALUE:"<<index[0]<<std::endl;
                             break;
     default: break;
     }
