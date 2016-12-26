@@ -603,6 +603,14 @@ void GLSLProgram::getInfo(GLenum infoType){
                             glGetIntegerv(GL_STENCIL_CLEAR_VALUE,index);
                             std::cout<<"GL_STENCIL_CLEAR_VALUE:"<<index[0]<<std::endl;
                             break;
+    case GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX: 
+                            glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX,index);
+                            std::cout<<"GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX:"<<(index[0]>>10)<<std::endl;
+                            break;
+    case GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX: 
+                            glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX,index);
+                            std::cout<<"GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX:"<<(index[0]>>10)<<std::endl;
+                            break;
     default: break;
     }
 }

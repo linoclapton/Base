@@ -45,7 +45,10 @@ public:
         index--;
     }
 };
-//draw picture on destop directly
-void drawPixelOnDesktop(Pixel &p);
+    //draw picture on destop directly
+    void drawPixelOnDesktop(Pixel &p);
 
+    int KMP(std::string src, std::string pattern);
+
+    int BM (std::string src, std::string pattern);
 }
