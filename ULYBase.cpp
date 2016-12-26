@@ -75,4 +75,27 @@ namespace ULY{
         return -1;
     }
 
+    int Sunday(std::string src, std::string p){
+        int table[256];
+        int sl = src.length();
+        int pl = p.length();
+        for(int i=0;i<256;i++)
+            table[i] = pl+1;
+        for(int i=0;i<pl;i++)
+            table[p[i]] = pl - i;
+
+        int j,k;
+        for(int i=0;i<sl;){
+            cout<<i<<endl;
+            for(j=0,k=i; j<pl && src[k] == p[j] ; ){
+                j++;
+                k++;
+            }
+            if(j==pl)
+                return k-j;
+            i = i + table[src[i+pl]];
+        }
+        return -1;
+    }
+
 }

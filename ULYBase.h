@@ -51,4 +51,6 @@ public:
     int KMP(std::string src, std::string pattern);
 
     int BM (std::string src, std::string pattern);
+
+    int Sunday(std::string src, std::string pattern);
 }
