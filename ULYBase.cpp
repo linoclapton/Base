@@ -1,4 +1,6 @@
 #include "ULYBase.h"
+#include "limits.h"
+
 namespace ULY{
 
     void drawPixelOnDesktop(Pixel &p){
@@ -87,7 +89,7 @@ namespace ULY{
         int j,k;
         for(int i=0;i<sl;){
             cout<<i<<endl;
-            for(j=0,k=i; j<pl && src[k] == p[j] ; ){
+            for(j=0,k=i; j < pl && src[k] == p[j] ; ){
                 j++;
                 k++;
             }
@@ -96,6 +98,40 @@ namespace ULY{
             i = i + table[src[i+pl]];
         }
         return -1;
+    }
+
+    int* subSequence(std::string src, std::string p){
+        int sl = src.length();
+        int pl = p.length();
+        int *result = new int[pl];
+        for(int i=0,j=0;i<sl;i++){
+            if(src[i] == p[j]){
+                result[j] = i;
+                j++;
+            }
+            if(pl-1<j){
+                return result;
+            }
+        }
+        delete[] result;
+        return NULL;
+    }
+    // Floyd¨CWarshall algorithm
+    // shortestDist(i,j,k+1) = min(shortestDist(i,j,k),shortestDist(i,k+1,k)+shortestDist(k+1,j,k)
+    void shortestPath(int *dist,int *path, int n){
+        //init dist[i][i] = 0 path[i][i] = i 
+        //dist[i][j] = edge[i][j] 
+        //others dist[i][j] = INT_MAX
+        for(int k=0;k<n;k++)
+            for(int i=0;i<n;i++)
+                for(int j=0;j<n;j++){
+                    if(dist[i*n+j]>dist[i*n+k]+dist[k*n+j]){
+                        dist[i*n+j] = dist[i*n+k]+dist[k*n+j]; 
+                        cout<<i<<' '<<j<<' '<<dist[i*n+j]<<endl;
+                        path[i*n+j] = k;
+                    }
+                }
+
     }
 
 }
