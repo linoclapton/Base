@@ -117,7 +117,7 @@ namespace ULY{
         return NULL;
     }
     // Floyd¨CWarshall algorithm
-    // shortestDist(i,j,k+1) = min(shortestDist(i,j,k),shortestDist(i,k+1,k)+shortestDist(k+1,j,k)
+    // shortestDist(i,j,k+1) = min(shortestDist(i,j,k),shortestDist(i,k+1,k)+shortestDist(k+1,j,k))
     void shortestPath(int *dist,int *path, int n){
         //init dist[i][i] = 0 path[i][i] = i 
         //dist[i][j] = edge[i][j] 
