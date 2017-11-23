@@ -57,7 +57,7 @@ return
    Send, {END}
 return
 !o::
-   Send, {Home}{Enter}{Up}
+   Send, {End}{Enter}
 return
 ^h::
 send, {BS}

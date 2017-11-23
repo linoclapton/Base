@@ -7,22 +7,23 @@
 void GLSLProgram::create(){
     _program[_id] = glCreateProgram();
 }
-void GLSLProgram::attachShader(GLenum type, std::string path){
+
+void GLSLProgram::attachShader(GLenum type, std::string path) {
     // Create the shaders
-    GLuint shader = glCreateShader(type);
     // Read the Vertex Shader code from the file
     std::string shaderCode;
     std::ifstream fstream(path, std::ios::in);
-    if (fstream.is_open()){
+    if (fstream.is_open()) {
         std::string Line = "";
         while (getline(fstream, Line))
             shaderCode += "\n" + Line;
         fstream.close();
     }
-    else{
+    else {
         log = "Impossible to open Are you in the right directory ? Don't forget to read the FAQ !\n";
         return;
     }
+    GLuint shader = glCreateShader(type);
     GLint Result = GL_FALSE;
     int InfoLogLength;
     // Compile Vertex Shader
@@ -43,6 +44,8 @@ void GLSLProgram::attachShader(GLenum type, std::string path){
 void GLSLProgram::glActiveTex(GLenum texture){
     glActiveTexture(texture);
 }
+
+
 GLint GLSLProgram::getUniformLocation(const char *name){
     return _uniforms[_id][name];
 }
@@ -470,6 +473,9 @@ void GLSLProgram::renderText(std::string text, GLfloat x, GLfloat y, GLfloat sca
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
     use(currentID);
+}
+void GLSLProgram::deleteTex(GLuint texture){
+    glDeleteTextures(1,&texture);
 }
 
 void GLSLProgram::deleteShaders(){

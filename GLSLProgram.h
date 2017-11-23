@@ -7,19 +7,23 @@
 #include <map>
 #include <ft2build.h>
 #include <freetype\freetype.h>
+#define GLSL(glsl_source) #glsl_source
+
 struct Character {
     GLuint TextureID;   // ID handle of the glyph texture
     glm::ivec2 Size;    // Size of glyph
     glm::ivec2 Bearing;  // Offset from baseline to left/top of glyph
     GLuint Advance;    // Horizontal offset to advance to next glyph
 };
-class Camera{
+
+class Camera {
 public:
     float* lookAt(float pos[3],float target[3],float up[3]);
 private:
     void normalize(float*);
 };
-class GLSLProgram{
+
+class GLSLProgram {
 
 private:
     int _id;
@@ -107,6 +111,7 @@ public:
     const char* getErrorInfo(int errorId);
     void getInfo(GLenum infoType);
 
+    void deleteTex(GLuint texture);
     void deleteShaders();
     void deleteProgram();
     void printGLExtension();
