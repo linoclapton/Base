@@ -134,4 +134,16 @@ namespace ULY{
 
     }
 
+    void write(string path,char* data,size_t size) {
+        ofstream file(path,iostream::binary);
+        file.write(data,size);
+        file.close();
+    }
+
+    void read(string path,char* data,size_t size){
+        ifstream file(path,iostream::binary);
+        file.read(data,size);
+        file.close();
+    }
 }
+

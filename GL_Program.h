@@ -21,10 +21,12 @@ namespace ULY {
             m_program = glCreateProgram();
         }
         GL_PG(GL_VS *vs,GL_FS *fs){
+            m_program = glCreateProgram();
             m_vs = vs;
             m_fs = fs;
-            m_program = glCreateProgram();
+            link();
         }
+        GL_PG(string vs,string fs);
         void link();
         void use(){
             glUseProgram(m_program);

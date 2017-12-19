@@ -8,14 +8,15 @@
 #include <map>
 
 namespace ULY{
+    typedef struct {
+        GLuint vb_id;  // vertex buffer id
+        int numTriangles;
+        size_t material_id;
+    } DrawObject;
+
     class GL_Model{
     public:
         GL_PG *pg;
-        ULY::attrib_t attrib;
-        vector<ULY::shape_t> shapes;
-        vector<ULY::material_t> materials;
-        map<std::string, GLuint> textures;
-        float bmin[3], bmax[3];
         glm::mat4 m_project;
         glm::mat4 m_view;
         glm::mat4 m_model;
@@ -30,8 +31,13 @@ namespace ULY{
 
     class GL_Obj_Model : public GL_Model{
     public:
-
         string path;
+        ULY::attrib_t attrib;
+        vector<ULY::shape_t> shapes;
+        vector<ULY::material_t> materials;
+        map<std::string, GLuint> textures;
+        vector<DrawObject> gDrawObjects;
+        float bmin[3], bmax[3];
         vector<unsigned char *> img;
         vector<pair<int,int>> resolution;
         void init(string path ="",string name ="bunny.obj");

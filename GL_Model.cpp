@@ -25,14 +25,6 @@
 
 namespace ULY{
 
-    typedef struct {
-        GLuint vb_id;  // vertex buffer id
-        int numTriangles;
-        size_t material_id;
-    } DrawObject;
-
-    std::vector<DrawObject> gDrawObjects;
-
     static std::string GetBaseDir(const std::string &filepath) {
         if (filepath.find_last_of("/\\") != std::string::npos)
             return filepath.substr(0, filepath.find_last_of("/\\"));
@@ -56,7 +48,6 @@ namespace ULY{
         GLenum e = glGetError();
         if (e != GL_NO_ERROR) {
             fprintf(stderr, "OpenGL error in \"%s\": %d (%d)\n", desc.c_str(), e, e);
-            exit(20);
         }
     }
 
@@ -159,6 +150,7 @@ namespace ULY{
                             }
                             std::cout << "Loaded texture: " << texture_filename << ", w = " << w << ", h = " << h << ", comp = " << comp << std::endl;
 
+                            glBindTexture(GL_TEXTURE_2D, 0);
                             glGenTextures(1, &texture_id);
                             glBindTexture(GL_TEXTURE_2D, texture_id);
                             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -210,7 +202,6 @@ namespace ULY{
                             assert(attrib.texcoords.size() > 2 * idx0.texcoord_index + 1);
                             assert(attrib.texcoords.size() > 2 * idx1.texcoord_index + 1);
                             assert(attrib.texcoords.size() > 2 * idx2.texcoord_index + 1);
-
                             // Flip Y coord.
                             tc[0][0] = attrib.texcoords[2 * idx0.texcoord_index];
                             tc[0][1] = 1.0f - attrib.texcoords[2 * idx0.texcoord_index + 1];
@@ -356,7 +347,6 @@ namespace ULY{
             glEnableClientState(GL_NORMAL_ARRAY);
             glEnableClientState(GL_COLOR_ARRAY);
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
             glBindTexture(GL_TEXTURE_2D, 0);
             if ((o.material_id < materials.size())) {
                 std::string diffuse_texname = materials[o.material_id].diffuse_texname;
@@ -412,7 +402,7 @@ namespace ULY{
         if (maxExtent < 0.5f * (bmax[2] - bmin[2])) {
             maxExtent = 0.5f * (bmax[2] - bmin[2]);
         }
-        pg= new GL_PG();
+        pg = new GL_PG();
         /*bool ret = ULY::LoadObj(&attrib, &shapes, &materials, &err,(path+name).c_str(),path.c_str());
         this->path = path;
         for(int i = 0 ; i < materials.size() ; ++i){
@@ -439,8 +429,8 @@ namespace ULY{
     void GL_Obj_Model::render(){
         if(pg){
             // Fit to -1, 1
+            //pg->use();
             Draw(gDrawObjects, materials, textures);
-           //Èû array buffer texture index buffer
         }else{
             for(int i = 0 ; i < shapes.size() ; ++i){
                 if(img.size()!=0 && img[i]){

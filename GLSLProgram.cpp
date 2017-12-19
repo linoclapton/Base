@@ -4,7 +4,7 @@
 #include <vector>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-void GLSLProgram::create(){
+void GLSLProgram::create() {
     _program[_id] = glCreateProgram();
 }
 
@@ -148,9 +148,14 @@ void GLSLProgram::link(){
     delete []name;
 
 }
-void GLSLProgram::use(int id){
-    change(id);
-    glUseProgram(_program[id]);
+void GLSLProgram::use(int id) {
+    if(id<0){
+        glUseProgram(0);
+        return;
+    }else{
+        change(id);
+        glUseProgram(_program[id]);
+    }
     //printActiveUniforms();
 }
 

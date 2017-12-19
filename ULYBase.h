@@ -57,4 +57,8 @@ public:
     int* subSequence(std::string src, std::string pattern);
 
     void shortestPath(int *dist,int *path, int n);
+
+    void write(string path,char* data,size_t size);
+    void read(string path,char* data,size_t size);
+
 }

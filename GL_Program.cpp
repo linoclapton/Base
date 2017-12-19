@@ -40,7 +40,12 @@ namespace ULY{
         if(m_shader!=0)
         glAttachShader(p->m_program, m_shader);
     }
-
+    GL_PG::GL_PG(string vs,string fs){
+        m_program = glCreateProgram();
+        m_vs = new GL_VS(vs);
+        m_fs = new GL_FS(fs);
+        link();
+    }
     void GL_PG::link() {
         m_vs->attach(this);
         m_fs->attach(this);
